@@ -1,0 +1,60 @@
+# TMS Smart Setup definition file for python4delphi
+# Do not modify this file. To configure smart setup, edit tms.config.yaml instead.
+minimum required tmsbuild version: 2.0
+  
+application:
+  id: pyscripter.python4delphi # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
+  name: Python4Delphi
+  description: Python for Delphi (P4D) is a set of free components that wrap up the Python DLL into Delphi and Lazarus (FPC). They let you easily execute Python scripts, create new Python modules and new Python types. You can create Python extensions as DLLs and much more. 
+  copyright: MIT License
+  url: https://github.com/pyscripter/python4delphi
+  docs: 
+#  version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
+                             # and the line must be "something: version". like for example "tms.example: 1.0.3". 
+                             # The text after ":" will be used as version number to display along the name.
+
+
+supported frameworks:
+  vcl:
+    ide since: delphisydney
+    platforms:
+      - win32intel
+      - win64intel
+      - win64xintel
+    c++ builder support: true
+
+  fmx:
+    ide since: delphisydney
+    platforms:
+      - win32intel
+      - win64intel
+      - win64xintel
+      - macos64arm
+      - linux64
+    c++ builder support: true
+
+packages:
+  - Python: [runtime, vcl, fmx]
+  - dclPython: [design, vcl]
+  - PythonVcl: [runtime, vcl]
+  - dclPythonVcl: [design, vcl]
+  - PythonFmx: [runtime, fmx]
+  - dclPythonFmx: [design, fmx]
+  
+
+# The settings in the this section are only needed if the packages don't follow smartsetup conventions
+package options:
+  # Use this section only if you are not using the standard smartsetup folders for the packages.
+  # Note that if the same folder supports for example Delphi 11 and Delphi 12 (by using Lbsuffix $(auto)), you can 
+  # write the same folder for 11 and 12.
+  package folders:
+    delphisydney+: Delphi 10.4+
+    
+
+paths:
+  # the paths below are pattern-matched with the existing library path (case insensitive), and they will be passed to the compiler if they match.
+  # Smart setup by default doesn't pass the library path in the user's machine to the compiler, to avoid errors due to broken
+  # library paths. Use this only when you need some component like fmxlinux which is not a smart-setup dependency and not something that comes built-in in delphi.
+  search paths to preserve:
+    - *fmxlinux*
+
