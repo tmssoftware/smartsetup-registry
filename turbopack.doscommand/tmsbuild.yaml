@@ -1,0 +1,42 @@
+# TMS Smart Setup definition file for DOSCommand
+# Do not modify this file. To configure smart setup, edit tms.config.yaml instead.
+minimum required tmsbuild version: 2.0
+  
+application:
+  id: turbopack.doscommand # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
+  name: DOSCommand
+  description: This component let you execute a dos program (exe, com or batch file) and catch the ouput in order to put it in a memo or in a listbox.
+  copyright: MPL License
+  url: https://github.com/TurboPack/DOSCommand/tree/master
+  docs: 
+#  version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
+                             # and the line must be "something: version". like for example "tms.example: 1.0.3". 
+                             # The text after ":" will be used as version number to display along the name.
+
+
+supported frameworks:
+  vcl:
+    ide since: delphiberlin
+    platforms:
+      - win32intel
+      - win64intel
+      - win64xintel
+    c++ builder support: true
+
+packages:
+  - DOSCommandDR: [runtime, vcl]
+  - DOSCommandDD: [design, vcl]
+  
+# The settings in the this section are only needed if the packages don't follow smartsetup conventions
+package options:
+  # Use this section only if you are not using the standard smartsetup folders for the packages.
+  # Note that if the same folder supports for example Delphi 11 and Delphi 12 (by using Lbsuffix $(auto)), you can 
+  # write the same folder for 11 and 12.
+  package folders:
+    delphiberlin: Berlin\Delphi
+    delphitokyo: Tokyo\Delphi
+    delphirio: Rio\Delphi
+    delphisydney: Sydney\Delphi
+    
+    delphi11+: 11AndAbove\Delphi
+
