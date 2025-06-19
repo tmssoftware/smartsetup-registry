@@ -1,0 +1,57 @@
+# TMS Smart Setup definition file for OmniThread
+# Do not modify this file. To configure smart setup, edit tms.config.yaml instead.
+minimum required tmsbuild version: 2.0
+  
+application:
+  id: gabr42.omnithread # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
+  name: OmniThreadLibrary
+  description: OmniThreadLibrary is a powerful threading library for Delphi. OmniThreadLibrary's main "selling" points (besides the prices, of course ;) are power, simplicity, and openess. With just few lines of code, you can set up multiple threads, send messages between them, process Windows messages and more. OmniThreadLibrary doesn't limit you in any way - if it is not powerfull enough for you, you can ignore any part of its "smartness" and replace it with your own code.
+  copyright: BSD License
+  url: https://github.com/gabr42/OmniThreadLibrary
+  docs: 
+#  version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
+                             # and the line must be "something: version". like for example "tms.example: 1.0.3". 
+                             # The text after ":" will be used as version number to display along the name.
+
+
+supported frameworks:
+  vcl:
+    ide since: delphi2010
+    platforms:
+      - win32intel
+      - win64intel
+      - win64xintel
+    c++ builder support: true
+
+packages:
+  - OmniThreadLibraryRuntime: [runtime, vcl]
+  - OmniThreadLibraryDesigntime: [design, vcl]
+
+# The settings in the this section are only needed if the packages don't follow smartsetup conventions
+package options:
+
+  # Use this section only if you are not using the standard smartsetup folders for the packages.
+  # Note that if the same folder supports for example Delphi 11 and Delphi 12 (by using Lbsuffix $(auto)), you can 
+  # write the same folder for 11 and 12.
+  package folders:
+    delphi2007: Delphi 2007
+    delphi2009: Delphi 2009
+    delphi2010: Delphi 2010
+    delphixe: Delphi XE
+    delphixe2: Delphi XE2
+    delphixe3: Delphi XE3
+    delphixe4: Delphi XE4
+    delphixe5: Delphi XE5
+    delphixe6: Delphi XE6
+    delphixe7: Delphi XE7
+    delphixe8: Delphi XE8
+
+    delphiseattle: Delphi 10 Seattle
+    delphiberlin: Delphi 10.1 Berlin
+    delphitokyo: Delphi 10.2 Tokyo
+    delphirio: Delphi 10.3 Rio
+    delphisydney: Delphi 10.4 Sydney
+    
+    delphi11: Delphi 11 Alexandria
+    delphi12: Delphi 12 Athens
+

@@ -1,0 +1,106 @@
+# TMS Smart Setup definition file for Spring4D
+# Do not modify this file. To configure smart setup, edit tms.config.yaml instead.
+minimum required tmsbuild version: 2.0
+  
+application:
+  id: sglienke.spring4d # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
+  name: Spring4D
+  description: Spring4D is an open-source code library for Embarcadero Delphi XE and higher. It consists of a number of different modules that contain a base class library (common types, interface based collection types, reflection extensions) and a dependency injection framework. It uses the Apache License 2.0.
+  copyright: Spring4D Team
+  url: https://bitbucket.org/sglienke/spring4d/src/master/
+  docs: 
+#  version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
+                             # and the line must be "something: version". like for example "tms.example: 1.0.3". 
+                             # The text after ":" will be used as version number to display along the name.
+
+
+supported frameworks:
+  vcl:
+    ide since: delphixe2
+    platforms:
+      - win32intel
+      - win64intel
+    c++ builder support: true
+
+  fmx:
+    ide since: delphisydney
+    platforms:
+      - win32intel
+      - win64intel
+      - macos64intel
+      - macos64arm
+      - iosdevice64
+      - iossimulator64arm
+      - android32
+      - android64
+      - linux64
+
+    c++ builder support: true
+
+packages:
+  - Spring.Base: [runtime, vcl, fmx]
+  - Spring.Core: [runtime, vcl, fmx]
+  - Spring.Data: [runtime, vcl, fmx]
+  - Spring.Data.Designtime: [design, vcl]
+  - Spring.Persistence: [runtime, vcl]
+  - Spring.Extensions: [runtime, vcl, fmx]
+
+# The settings in this section are only needed if the packages don't follow smartsetup conventions
+package options:
+  # By default, smartsetup double-checks that the dproj it is going to compile supports the platforms you specified above in the "packages" section.
+  # But some packages might have wrong data in the dproj. If you set this to true, smartsetup will ignore whatever the dproj says and only use the info in "packages" 
+  ignore dproj platforms: true
+
+  # Use this section only if you are not using the standard smartsetup folders for the packages.
+  # Note that if the same folder supports for example Delphi 11 and Delphi 12 (by using Lbsuffix $(auto)), you can 
+  # write the same folder for 11 and 12.
+  package folders:
+    delphixe: DelphiXE
+    delphixe2: DelphiXE2
+    delphixe3: DelphiXE3
+    delphixe4: DelphiXE4
+    delphixe5: DelphiXE5
+    delphixe6: DelphiXE6
+    delphixe7: DelphiXE7
+    delphixe8: DelphiXE8
+
+    delphiseattle: Delphi10Seattle
+    delphiberlin: Delphi10Berlin
+    delphitokyo: Delphi10Tokyo
+    delphirio: Delphi10Rio
+    delphisydney: Delphi10Sydney
+    
+    delphi11: Delphi11
+    delphi12: Delphi12
+
+  # If the packages in the library use LIBSUFFIX different from the standard (270, 280, etc), you need to specify them here.
+  # In most cases, you should just have standard LIBSUFIXes and do nothing here.
+  # This setting applies to all packages in the library.
+  lib suffixes:
+    delphixe: .DelphiXE
+    delphixe2: .DelphiXE2
+    delphixe3: .DelphiXE3
+    delphixe4: .DelphiXE4
+    delphixe5: .DelphiXE5
+    delphixe6: .DelphiXE6
+    delphixe7: .DelphiXE7
+    delphixe8: .DelphiXE8
+
+    delphiseattle: .Delphi10Seattle
+    delphiberlin: .Delphi10Berlin
+    delphitokyo: .Delphi10Tokyo
+    delphirio: .Delphi10Rio
+    delphisydney: .Delphi10Sydney
+    
+    delphi11: .Delphi11
+    delphi12: .Delphi12
+
+paths:
+  # the paths below are pattern-matched with the existing library path (case insensitive), and they will be passed to the compiler if they match.
+  # Smart setup by default doesn't pass the library path in the user's machine to the compiler, to avoid errors due to broken
+  # library paths. Use this only when you need some component like fmxlinux which is not a smart-setup dependency and not something that comes built-in in delphi.
+  search paths to preserve:
+    - *fmxlinux*
+
+ 
+

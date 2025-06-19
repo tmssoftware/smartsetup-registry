@@ -1,0 +1,59 @@
+# TMS Smart Setup definition file for ZeosLib
+# Do not modify this file. To configure smart setup, edit tms.config.yaml instead.
+minimum required tmsbuild version: 2.0
+  
+application:
+  id: zeos.zeoslib # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
+  name: ZeosLib
+  description: The ZeosLib is a set of database components for MySQL, MariaDB, PostgreSQL, Interbase, Firebird, MS SQL Server, SAP Adaptive Server Enterprise and Adaptive Server Anywhere (previously Sybase), Oracle and SQLite for Delphi, FreePascal/Lazarus and C++ Builder.
+  copyright: LGPL 2.1
+  url: https://sourceforge.net/projects/zeoslib/
+  docs: 
+#  version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
+                             # and the line must be "something: version". like for example "tms.example: 1.0.3". 
+                             # The text after ":" will be used as version number to display along the name.
+
+supported frameworks:
+  vcl:
+    ide since: delphi7
+    platforms:
+      - win32intel
+      - win64intel
+      - win64xintel
+    c++ builder support: true
+
+packages:
+  - ZCore: [runtime, vcl]
+  - ZPlain: [runtime, vcl]
+  - ZParseSql: [runtime, vcl]
+  - ZDbc: [runtime, vcl]
+  - ZComponent: [runtime, vcl]
+  - ZComponentDesign: [design, vcl]
+
+# The settings in the this section are only needed if the packages don't follow smartsetup conventions
+package options:
+  # Use this section only if you are not using the standard smartsetup folders for the packages.
+  # Note that if the same folder supports for example Delphi 11 and Delphi 12 (by using Lbsuffix $(auto)), you can 
+  # write the same folder for 11 and 12.
+  package folders: 
+    delphi7: delphi7
+    delphi2005: Delphi2005
+    delphi2007: Delphi2007
+    delphi2009: Delphi2009
+    delphi2010: Delphi2010
+    delphixe: DelphiXE
+    delphixe2: DelphiXE2
+    delphixe3: DelphiXE3
+    delphixe4: DelphiXE4
+    delphixe5: DelphiXE5
+    delphixe6: DelphiXE6
+    delphixe7: DelphiXE7
+    delphixe8: DelphiXE8
+    delphiseattle: DelphiXE10
+    delphiberlin: DelphiXE10.1
+    delphitokyo: DelphiXE10.2
+    delphirio: DelphiXE10.3
+    delphisydney: DelphiXE10.4
+    delphi11: Delphi11
+    delphi12: Delphi12
+

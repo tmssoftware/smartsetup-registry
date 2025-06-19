@@ -1,0 +1,50 @@
+# TMS Smart Setup definition file for VSoft CommandLine
+# Do not modify this file. To configure smart setup, edit tms.config.yaml instead.
+minimum required tmsbuild version: 2.0
+  
+application:
+  id: vsoft.commandline # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
+  name: VSoft Command Line Parser
+  description: Simple Command Line Options Parser - spawned from the DUnitX Project.
+  copyright: Vincent Parrett and contributors
+  url: https://github.com/VSoftTechnologies/VSoft.CommandLineParser
+  docs: 
+#  version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
+                             # and the line must be "something: version". like for example "tms.example: 1.0.3". 
+                             # The text after ":" will be used as version number to display along the name.
+
+supported frameworks:
+  vcl:
+    ide since: delphixe2
+    platforms:
+      - win32intel
+      - win64intel
+      - win64xintel
+    c++ builder support: true
+
+packages:
+  - VSoft.CommandLineR: [runtime, vcl]
+
+# The settings in the this section are only needed if the packages don't follow smartsetup conventions
+package options:
+  # Use this section only if you are not using the standard smartsetup folders for the packages.
+  # Note that if the same folder supports for example Delphi 11 and Delphi 12 (by using Lbsuffix $(auto)), you can 
+  # write the same folder for 11 and 12.
+  package folders:
+    delphixe2: Rad Studio XE2
+    delphixe3: Rad Studio XE3
+    delphixe4: Rad Studio XE4
+    delphixe5: Rad Studio XE5
+    delphixe6: Rad Studio XE6
+    delphixe7: Rad Studio XE7
+    delphixe8: Rad Studio XE8
+
+    delphiseattle: Rad Studio 10.0 Seattle
+    delphiberlin: Rad Studio 10.1 Berlin
+    delphitokyo: Rad Studio 10.2 Tokyo
+    delphirio: Rad Studio 10.3 Rio
+    delphisydney: Rad Studio 10.4 Sydney
+    
+    delphi11: Rad Studio 11.0 Alexandria
+    delphi12: Rad Studio 12.0
+
