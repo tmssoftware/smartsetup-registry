@@ -7,7 +7,8 @@ application:
   name: ZeosLib
   description: The ZeosLib is a set of database components for MySQL, MariaDB, PostgreSQL, Interbase, Firebird, MS SQL Server, SAP Adaptive Server Enterprise and Adaptive Server Anywhere (previously Sybase), Oracle and SQLite for Delphi, FreePascal/Lazarus and C++ Builder.
   copyright: LGPL 2.1
-  url: https://sourceforge.net/projects/zeoslib/
+  url: https://svn.code.sf.net/p/zeoslib/code-0/trunk zeoslib-code-0
+  vcs protocol: svn
   docs: 
 #  version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
                              # and the line must be "something: version". like for example "tms.example: 1.0.3". 

@@ -7,7 +7,7 @@ application:
   name: DOSCommand
   description: This component let you execute a dos program (exe, com or batch file) and catch the ouput in order to put it in a memo or in a listbox.
   copyright: MPL License
-  url: https://github.com/TurboPack/DOSCommand/tree/master
+  url: https://github.com/TurboPack/DOSCommand
   docs: 
 #  version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
                              # and the line must be "something: version". like for example "tms.example: 1.0.3". 
