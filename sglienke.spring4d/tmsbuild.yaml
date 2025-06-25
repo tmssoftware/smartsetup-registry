@@ -102,5 +102,14 @@ paths:
   search paths to preserve:
     - *fmxlinux*
 
+  # this is a temporary fix for https://bitbucket.org/sglienke/spring4d/issues/427/wrong-path-in-r-directive-inside-file
+  # there is a resource pointing to {$R ..\..\Resources\Spring.Data.ObjectDataSet.dcr} that should point to {$R ..\..\..\Resources\Spring.Data.ObjectDataSet.dcr}
+  # and that prevents tmsbuild from compiling.
+  # by passing "Resources\something" as library path, the path will resolve to "Resources\something\..\..\Resources\Spring.Data.ObjectDataSet.dcr" which is the correct path.
+  # once the issue is fixed this section can be removed.
+  build-only library paths:
+    - Resources\invalid_folder\
+  
+
  
 
