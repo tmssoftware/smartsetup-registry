@@ -13,23 +13,7 @@ application:
 
 
 supported frameworks:
-  fmxD11:
-    ide since: delphi11
-    ide until: delphi12
-    platforms:
-      - win32intel
-      - win64intel
-      - macos64intel
-      - macos64arm
-      - iosdevice64
-      - iossimulator64arm
-      #- android32
-      #- android64
-      #- linux64
-
-    c++ builder support: true
-
-  fmxD12:
+  fmx:
     ide since: delphi12
     platforms:
       - win32intel
@@ -45,9 +29,9 @@ supported frameworks:
     c++ builder support: true
 
 packages:
-  - KastriFMX: [runtime, fmxD11, fmxD12]
-  - KastriAdMob: [runtime, fmxD11, fmxD12]
-  - KastriBuild: [runtime, fmxD11, fmxD12]
+  - KastriFMX: [runtime, fmx]
+  - KastriAdMob: [runtime, fmx]
+  - KastriBuild: [runtime, fmx]
 
 # The settings in this section are only needed if the packages don't follow smartsetup conventions
 package options:
