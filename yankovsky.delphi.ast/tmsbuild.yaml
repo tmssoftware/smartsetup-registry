@@ -1,12 +1,12 @@
-# TMS Smart Setup definition file for TOML-Delphi
+# TMS Smart Setup definition file for DelphiAST
 # Do not modify this file. To configure smart setup, edit tms.config.yaml instead.
 minimum required tmsbuild version: 2.0
   
 application:
-  id: pyscripter.toml.delphi # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
-  name: TOML-Delphi
-  description: Toml parser and writer for Pascal and Delphi.
-  url: https://github.com/pyscripter/toml-delphi
+  id: yankovsky.delphi.ast # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
+  name: DelphiAST
+  description: Abstract syntax tree builder for Delphi.
+  url: https://github.com/RomanYankovsky/DelphiAST
   #version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
                              # and the line must be "something: version". like for example "tms.example: 1.0.3". 
                              # The text after ":" will be used as version number to display along the name.
@@ -36,13 +36,20 @@ supported frameworks:
       - all
 
 packages:
-  - TomlDelphi: [runtime, vcl, fmx]
+  - DelphiAST: [runtime, vcl, fmx]
 
 package definitions:
-  TomlDelphi:
+  DelphiAST:
     framework type: NONE # can be NONE, FMX or VCL
-    description: Toml Engine
+    description: DelphiAST
     requires: rtl   #write the dcp packages this package requires. don't include the dcp extension.
     files:
-      folder: sources
-      include file mask: '*'  
+      folder: Source
+      exclude folder mask: FreePascalSupport
+      include file mask: '*'
+      recursive: true  
+
+paths:
+  build-only library paths: 
+    - Source\SimpleParser
+
