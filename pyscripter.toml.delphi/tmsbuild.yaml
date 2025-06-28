@@ -1,0 +1,48 @@
+# TMS Smart Setup definition file for TOML-Delphi
+# Do not modify this file. To configure smart setup, edit tms.config.yaml instead.
+minimum required tmsbuild version: 2.0
+  
+application:
+  id: pyscripter.toml.delphi # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
+  name: TOML-Delphi
+  description: Toml parser and writer for Pascal and Delphi.
+  url: https://github.com/pyscripter/toml-delphi
+  #version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
+                             # and the line must be "something: version". like for example "tms.example: 1.0.3". 
+                             # The text after ":" will be used as version number to display along the name.
+
+# valid ide values:
+#   delphi6/delphi7/delphi2005/delphi2006/delphi2007/delphi2009/delphi2010/delphixe/delphixe2..delphixe8
+#   delphiseattle/delphiberlin/delphitokyo/delphirio/delphisydney/delphi11..delphi12
+#   lazarus
+
+# platforms you can write below:
+#  win32intel/win64intel/win64xintel/macos32intel/macos64intel/macos64arm/iossimulator/iosdevice32/iosdevice64/android32/android64/linux64
+
+# Frameworks are just a group of supported IDEs and platforms. You can define as much as you want
+# with any name you desire, and then combine them to specify what platforms and IDEs the packages support.
+supported frameworks:
+  vcl:
+    ide since: delphi11
+    platforms:
+      - win32intel
+      - win64intel
+      - win64xintel
+    c++ builder support: true
+
+  fmx:
+    ide since: delphixe2
+    platforms:
+      - all
+
+packages:
+  - TomlDelphi: [runtime, vcl, fmx]
+
+package definitions:
+  TomlDelphi:
+    framework type: NONE # can be NONE, FMX or VCL
+    description: Toml Engine 🥰
+    requires: rtl   #write the dcp packages this package requires. don't include the dcp extension.
+    files:
+      folder: sources
+      include file mask: '*'  
