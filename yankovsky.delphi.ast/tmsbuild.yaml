@@ -23,7 +23,7 @@ application:
 # with any name you desire, and then combine them to specify what platforms and IDEs the packages support.
 supported frameworks:
   vcl:
-    ide since: delphi11
+    ide since: delphixe4
     platforms:
       - win32intel
       - win64intel
@@ -31,7 +31,7 @@ supported frameworks:
     c++ builder support: true
 
   fmx:
-    ide since: delphixe2
+    ide since: delphi11
     platforms:
       - all
 
