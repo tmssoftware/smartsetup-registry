@@ -44,10 +44,11 @@ package definitions:
     description: DelphiAST
     requires: rtl   #write the dcp packages this package requires. don't include the dcp extension.
     files:
-      folder: Source
-      exclude folder mask: FreePascalSupport
-      include file mask: '*'
-      recursive: true  
+      - source:
+          folder: Source
+          exclude folder mask: FreePascalSupport
+          include file mask: '*'
+          recursive: true  
 
 paths:
   build-only library paths: 

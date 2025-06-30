@@ -44,5 +44,6 @@ package definitions:
     description: Toml Engine
     requires: rtl   #write the dcp packages this package requires. don't include the dcp extension.
     files:
-      folder: sources
-      include file mask: '*'  
+      - source:
+          folder: sources
+          include file mask: '*'  
