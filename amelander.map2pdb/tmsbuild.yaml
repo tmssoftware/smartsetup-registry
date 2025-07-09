@@ -1,0 +1,60 @@
+# TMS Smart Setup definition file for Map2pdb
+# Do not modify this file. To configure smart setup, edit tms.config.yaml instead.
+
+######
+# If registering, this will add a Tools->map2pdb entry to the Rad Studio Menu.
+######
+minimum required tmsbuild version: 2.0
+  
+application:
+  id: amelander.map2pdb # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
+  name: Map2pdb
+  description: A utility to generate pdb debug info for Delphi applications
+
+  url: https://github.com/andersmelander/map2pdb
+  docs: 
+ # version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
+                             # and the line must be "something: version". like for example "tms.example: 1.0.3". 
+                             # The text after ":" will be used as version number to display along the name.
+
+supported frameworks:
+  vcl:
+    ide since: delphi11
+    platforms:
+      - win32intel
+      - win64intel
+
+packages:
+  - map2pdb: [exe, vcl]
+
+package options:
+  extra defines: 
+    - remove: MADEXCEPT
+
+exe options:
+  delphi versions: latest
+  debug exes: false
+
+
+paths:
+  # this is similar to "extra library paths" above (and all the comments also apply here), but this path will only be added when compiling
+  # with msbuild. "extra library paths" will be added when compiling with msbuild, but also registered in Rad Studio. Entries here won't be registered.
+  # normally you will use this entries to fix buggy packages that you can't modify. It shouldn't be needed in normal cases and correct packages.
+  build-only library paths:
+    - Source 
+
+# Add entries to HKCU. For the values, you can use the variables %product-id%, %install-path%, %install-date%, %install-time%, %version%, %alternate-registry-key%
+# %alternate-registry-key% is what the "alternate registry key" used by delphi, as specified in tms.config.yaml
+# value type can be String or DWORD. If omitted it is String
+# For the Keys, you can use the variable %bds% to access the registry path for the BDS install.
+registry keys:
+  - '%bds%\Transfer\map2pdb':
+      - value: 
+          name: Title
+          data: map2pdb
+      - value: 
+          name: Path
+          data: '%install-path%\Bin\Win64\Release\map2pdb.exe'
+      - value: 
+          name: Params
+          data: -pause -bind:$EXENAME $PATH($EXENAME)$NAMEONLY($EXENAME).map
