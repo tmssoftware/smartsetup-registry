@@ -1,0 +1,62 @@
+# TMS Smart Setup definition file for HtmlViewer
+# Do not modify this file. To configure smart setup, edit tms.config.yaml instead.
+minimum required tmsbuild version: 2.0
+  
+application:
+  id: pbear.htmlviewer # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
+  name: HtmlViewer
+  description: The well-known Delphi/Lazarus HtmlViewer/FrameViewer.
+  url: https://github.com/BerndGabriel/HtmlViewer
+  #version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
+                             # and the line must be "something: version". like for example "tms.example: 1.0.3". 
+                             # The text after ":" will be used as version number to display along the name.
+
+# valid ide values:
+#   delphi6/delphi7/delphi2005/delphi2006/delphi2007/delphi2009/delphi2010/delphixe/delphixe2..delphixe8
+#   delphiseattle/delphiberlin/delphitokyo/delphirio/delphisydney/delphi11..delphi12
+#   lazarus
+
+# platforms you can write below:
+#  win32intel/win64intel/win64xintel/macos32intel/macos64intel/macos64arm/iossimulator/iosdevice32/iosdevice64/android32/android64/linux64
+
+# Frameworks are just a group of supported IDEs and platforms. You can define as much as you want
+# with any name you desire, and then combine them to specify what platforms and IDEs the packages support.
+supported frameworks:
+  vcl:
+    ide since: delphisydney
+    platforms:
+      - win32intel
+      - win64intel
+      - win64xintel
+    c++ builder support: true
+
+
+packages:
+  - FrameViewer: [runtime, vcl]
+  - dclFrameViewer: [design, vcl]
+
+package options:
+  root package folder: packages
+
+package definitions:
+  FrameViewer:
+    framework type: VCL # can be NONE, FMX or VCL
+    description: HtmlViewer runtime package.
+    requires: rtl;vcl;vclimg;soaprtl;VclSmp;   #write the dcp packages this package requires. don't include the dcp extension.
+    files:
+      - source:
+          folder: source
+          include file mask: '*.pas;*.dfm'  
+          exclude file mask: FrameViewerReg.pas;HTMLCompEdit.pas;AlphaBlendUn.pas;htmlmisc.pas;msimg32.pas;unicodestringslcl.pas;widestringslcl.pas
+
+  dclFrameViewer:
+    framework type: VCL # can be NONE, FMX or VCL
+    description: THtmlViewer, TFrameViewer, and TFrameBrowser
+    requires: rtl;vcl;designide;vclimg;soaprtl;VclSmp;FrameViewer;   #write the dcp packages this package requires. don't include the dcp extension.
+    files:
+      - source:
+          folder: source 
+          include file mask: FrameViewerReg.pas;HTMLCompEdit.pas
+
+help:
+  file: HtmlHelp/THtmlViewer.chm
