@@ -1,0 +1,70 @@
+#####################################
+# TMS Smart Setup definition file.
+# Do not modify this file. To configure smart setup, edit tms.config.yaml instead.
+# See https://doc.tmssoftware.com/smartsetup/guide/creating-bundles.html#creating-a-tmsbuildyaml-file
+#####################################
+# yaml-language-server: $schema=https://raw.githubusercontent.com/tmssoftware/smartsetup/refs/heads/main/tms/example-config/tmsbuild.schema.json
+
+minimum required tmsbuild version: 2.1
+  
+application:
+  id: jam.virtualtreeview # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
+  name: Virtual-TreeView
+  description: Virtual Treeview is a Delphi treeview control
+  company name: JAM-Software 
+  copyright: JAM-Software 
+  url: https://github.com/JAM-Software/Virtual-TreeView.git
+  vcs protocol: git
+
+supported frameworks:
+  vcl:
+    ide since: delphiseattle
+    platforms:
+      - win32intel
+      - win64intel
+      - win64xintel
+    c++ builder support: true
+
+packages:
+  - VirtualTreesR: [runtime, vcl]
+  - VirtualTreesD: [design, vcl]            
+
+# The settings in the this section are only needed if the packages don't follow smartsetup conventions
+package options:
+  # By default, smartsetup double-checks that the dproj it is going to compile supports the platforms you specified above in the "packages" section.
+  # But some packages might have wrong data in the dproj. If you set this to true, smartsetup will ignore whatever the dproj says and only use the info in "packages" 
+  ignore dproj platforms: false
+
+  # This shouldn't be needed in general. Smartsetup will find your packages wherever they are.
+  # But sometimes you might have the same packages in different unrelated folders (maybe some backup) and SmartSetup will get confused
+  # about which ones it has to use. In this case, you can specify the relative path here where SmartSetup will start looking for packages.
+  root package folder: Packages
+
+  # Use this section only if you are not using the standard smartsetup folders for the packages.
+  # Note that if the same folder supports for example Delphi 11 and Delphi 12 (by using Libsuffix $(auto)), you can 
+  # write the same folder for 11 and 12.
+  # You can also use a + at the end of the IDE Name to specify that this applies to that Delphi version and all newer ones.
+  # When using + order is important. In the example above, the line with delphisydney+ affects all versions until delphi12 (sydney and 11).
+  # The line delphi12+, being below delphisydney+ affects all delphi versions after 12, overriding the line delpihsydney+.
+  # If you don't specify a name for a given version,  the standard packages will be assumed for that version.
+  package folders:
+    delphiseattle: RAD Studio 10
+    delphiberlin: RAD Studio 10.1
+    delphitokyo: RAD Studio 10.2
+    delphirio: RAD Studio 10.3
+    delphisydney+: RAD Studio 10.4+
+
+  # If the packages in the library use LIBSUFFIX different from the standard (270, 280, etc), you need to specify them here.
+  # In most cases, you should just have standard LIBSUFIXes and do nothing here.
+  # This setting applies to all packages in the library.
+  lib suffixes:
+    delphiseattle: 23
+    delphiberlin: 24
+    delphitokyo: 25
+    delphirio: 26
+
+
+# Register your help in Rad Studio
+help:
+  file: help/VirtualTreeview.chm  #this must be a chm file that will be registered so you can press F1 in Delphi and get help. If you don't have a chm file comment this line.
+  
