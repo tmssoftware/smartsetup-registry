@@ -1,0 +1,118 @@
+#####################################
+# TMS Smart Setup definition file.
+# See https://doc.tmssoftware.com/smartsetup/guide/creating-bundles.html#creating-a-tmsbuildyaml-file
+#####################################
+# 
+# Build definition for WebView4Delphi 
+# - Supported RadStudio versions 11.3-13 (others are not supported intentionally)
+# - Supported platforms: win32intel/win64intel/win64xintel
+# - Supported compilers:
+#
+#####################################
+# yaml-language-server: $schema=https://raw.githubusercontent.com/tmssoftware/smartsetup/refs/heads/main/tms/example-config/tmsbuild.schema.json
+
+minimum required tmsbuild version: 2.1
+  
+application:
+  id: salvadordf.webview4delphi # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
+  name: Briskbard WebView4Delphi
+  description: WebView4Delphi is an open source project created by Salvador Díaz Fau to embed Chromium-based browsers in applications made with Delphi or Lazarus/FPC for Windows.
+  company name: Briskbard
+  copyright: salvadordf
+  # url for retrieving sources (must be a git clone url for git): 
+  url: https://github.com/salvadordf/WebView4Delphi.git
+  vcs protocol: git  #might be git, svn or zipfile. If omitted, it will be git.
+  docs: https://www.briskbard.com/index.php?lang=en&pageid=webview
+  #version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
+                             # and the line must be "something: version". like for example "tms.example: 1.0.3". 
+                             # The text after ":" will be used as version number to display along the name.
+
+# valid ide values:
+#   delphi6/delphi7/delphi2005/delphi2006/delphi2007/delphi2009/delphi2010/delphixe/delphixe2..delphixe8
+#   delphiseattle/delphiberlin/delphitokyo/delphirio/delphisydney/delphi11..delphi12
+#   lazarus
+
+# platforms you can write below:
+#  win32intel/win64intel/win64xintel/macos32intel/macos64intel/macos64arm/iossimulator/iosdevice32/iosdevice64/android32/android64/linux64
+
+# Frameworks are just a group of supported IDEs and platforms. You can define as much as you want
+# with any name you desire, and then combine them to specify what platforms and IDEs the packages support.
+supported frameworks:
+  vcl:
+    ide since: delphi11
+    #ide until: delphi12
+    platforms:
+      - win32intel
+      - win64intel
+      - win64xintel
+    c++ builder support: true
+
+  fmx:
+    ide since: delphi11
+    #can omit ide until
+    platforms:
+      - win32intel
+      - win64intel
+      - win64xintel
+
+  lcl:
+    ide since: lazarus
+    ide until: lazarus
+    platforms:
+      - win32intel
+
+# list the packages used for building (<package>.dproj, ...)
+packages:
+  - WebView4DelphiVCLRTL: [runtime, vcl]
+  - WebView4DelphiFMXRTL: [runtime, fmx]
+  - WebView4DelphiVCL_designtime: [design, vcl]
+  - WebView4DelphiFMX_designtime: [design, fmx]
+
+# The settings in the this section are only needed if the packages don't follow smartsetup conventions
+package options:
+  # By default, smartsetup double-checks that the dproj it is going to compile supports the platforms you specified above in the "packages" section.
+  # But some packages might have wrong data in the dproj. If you set this to true, smartsetup will ignore whatever the dproj says and only use the info in "packages" 
+  ignore dproj platforms: false
+
+  # This shouldn't be needed in general. Smartsetup will find your packages wherever they are.
+  # But sometimes you might have the same packages in different unrelated folders (maybe some backup) and SmartSetup will get confused
+  # about which ones it has to use. In this case, you can specify the relative path here where SmartSetup will start looking for packages.
+  root package folder:
+
+  # Use this *only* when you cannot change the packages. If possible, it is always better to modify the packages
+  # so they have a libsuffix. Otherwise, manual compilation of the packages will fail.
+  ##he: WebView4Delphi does not set a lib suffix (search for <DllSuffix> in the .dproj files!!!)
+  ##he: If no <DllSuffix> in the .dproj, enable add libsuffix here!
+  add libsuffix: true
+
+  # Use this section only if you are not using the standard smartsetup folders for the packages.
+  # Note that if the same folder supports for example Delphi 11 and Delphi 12 (by using Libsuffix $(auto)), you can 
+  # write the same folder for 11 and 12.
+  # You can also use a + at the end of the IDE Name to specify that this applies to that Delphi version and all newer ones.
+  # When using + order is important. In the example above, the line with delphisydney+ affects all versions until delphi12 (sydney and 11).
+  # The line delphi12+, being below delphisydney+ affects all delphi versions after 12, overriding the line delpihsydney+.
+  # If you don't specify a name for a given version,  the standard packages will be assumed for that version.
+  ##he: folders with the .dproj files for each version
+  package folders:
+  #  delphirio: Rad Studio 10.3 Rio
+  #  delphisydney+: Rad Studio Sydney To 11
+  #  delphi12+: Rad Studio 12 And Newer
+    delphi11+: packages
+
+  # If the packages in the library use LIBSUFFIX different from the standard (270, 280, etc), you need to specify them here.
+  # In most cases, you should just have standard LIBSUFIXes and do nothing here.
+  # This setting applies to all packages in the library.
+  lib suffixes:
+  # delphi11: _D11
+  # delphi12: _D12
+
+  # Use this section if you require a different set of defines to compile from SmartSetup
+  # Avoid using this section whenever possible, the best is to modify the packages to have the correct includes
+  extra defines:
+  #  - add: MYDEFINE
+  #  - remove: OTHERDEFINE  
+
+# Register your help in Rad Studio
+help:
+  file: docs/WebView4Delphi.chm  #this must be a chm file that will be registered so you can press F1 in Delphi and get help. If you don't have a chm file comment this line.
+
