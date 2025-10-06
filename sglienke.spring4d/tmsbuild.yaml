@@ -94,6 +94,7 @@ package options:
     
     delphi11: .Delphi11
     delphi12: .Delphi12
+    delphi13: .Delphi13
 
 paths:
   # the paths below are pattern-matched with the existing library path (case insensitive), and they will be passed to the compiler if they match.
