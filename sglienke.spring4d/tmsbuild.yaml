@@ -72,6 +72,7 @@ package options:
     
     delphi11: Delphi11
     delphi12: Delphi12
+    delphi13: Delphi13
 
   # If the packages in the library use LIBSUFFIX different from the standard (270, 280, etc), you need to specify them here.
   # In most cases, you should just have standard LIBSUFIXes and do nothing here.
