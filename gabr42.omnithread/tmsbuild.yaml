@@ -21,6 +21,7 @@ supported frameworks:
       - win32intel
       - win64intel
       - win64xintel
+      - winarm64ec
     c++ builder support: true
 
 packages:

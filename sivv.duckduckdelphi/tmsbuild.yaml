@@ -1,12 +1,12 @@
-# TMS Smart Setup definition file for TOML-Delphi
+# TMS Smart Setup definition file for Duck-Duck-Delphi
 # Do not modify this file. To configure smart setup, edit tms.config.yaml instead.
-minimum required tmsbuild version: 2.0
+minimum required tmsbuild version: 3.0
   
 application:
-  id: pyscripter.toml.delphi # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
-  name: TOML-Delphi
-  description: Toml parser and writer for Pascal and Delphi.
-  url: https://github.com/pyscripter/toml-delphi
+  id: sivv.duckduckdelphi # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
+  name: Duck-Duck-Delphi
+  description: Duck Duck Delphi adds duck typing, fluent object-graph queries, anonymous event handlers, and a set of RTTI conveniences to Delphi.
+  url: https://bitbucket.org/sivv/duckduckdelphi/src/master/
   #version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
                              # and the line must be "something: version". like for example "tms.example: 1.0.3". 
                              # The text after ":" will be used as version number to display along the name.
@@ -23,7 +23,7 @@ application:
 # with any name you desire, and then combine them to specify what platforms and IDEs the packages support.
 supported frameworks:
   vcl:
-    ide since: delphisydney
+    ide since: delphiseattle
     platforms:
       - win32intel
       - win64intel
@@ -32,19 +32,28 @@ supported frameworks:
     c++ builder support: true
 
   fmx:
-    ide since: delphisydney
+    ide since: delphiseattle
     platforms:
       - all
 
 packages:
-  - TomlDelphi: [runtime, vcl, fmx]
+  - DuckDuckDelphiRtl: [runtime, vcl, fmx]
+  - DuckDuckDelphiVcl: [runtime, vcl]
 
 package definitions:
-  TomlDelphi:
+  DuckDuckDelphiRtl:
     framework type: NONE # can be NONE, FMX or VCL
-    description: Toml Engine
+    description: Duck Duck Delphi.
     requires: rtl   #write the dcp packages this package requires. don't include the dcp extension.
     files:
       - source:
-          folder: sources
-          include file mask: '*'  
+          folder: .
+          include file mask: 'duck.pas'  
+  DuckDuckDelphiVcl:
+    framework type: VCL # can be NONE, FMX or VCL
+    description: Duck Duck Delphi VCL.
+    requires: rtl, vcl   #write the dcp packages this package requires. don't include the dcp extension.
+    files:
+      - source:
+          folder: .
+          include file mask: 'duck.vcl.pas'  
