@@ -1,0 +1,64 @@
+# =====================================================================================================
+# TMS Smart Setup configuration file for product Dext Framework
+# See https://doc.tmssoftware.com/smartsetup/guide/creating-bundles.html#creating-a-tmsbuildyaml-file
+# =====================================================================================================
+# yaml-language-server: $schema=https://raw.githubusercontent.com/tmssoftware/smartsetup/refs/heads/main/tms/example-config/tmsbuild.schema.json
+
+minimum required tmsbuild version: 3.4
+
+# General information about the product.
+application:
+  id: cesarliws.dext
+  name: Dext Framework
+  url: https://github.com/cesarliws/dext
+
+# Frameworks are just a group of supported IDEs and platforms. You can define as much as you want with any name you desire, and then combine them to specify what platforms and IDEs the packages support.
+supported frameworks:
+  rtl:
+    ide since: delphisydney
+    platforms:
+      - win32intel
+      - win64intel
+      - linux64
+  vcl:
+    ide since: delphisydney
+    platforms:
+      - win32intel
+      - win64intel
+  rtl1:
+    ide since: delphisydney
+    platforms:
+      - win32intel
+      - win64intel
+      - linux64
+    c++ builder support: true
+  vcl1:
+    ide since: delphisydney
+    platforms:
+      - win32intel
+      - win64intel
+      - linux64
+
+# List of packages in the library. Each package must have a unique name, and must be listed only once.
+packages:
+  - Dext.AST: [runtime, rtl]
+  - Dext.Core: [runtime, rtl]
+  - Dext.UI: [runtime, vcl]
+  - Dext.Events: [runtime, rtl]
+  - Dext.EF.Core: [runtime, rtl]
+  - Dext.Net: [runtime, rtl1]
+  - Dext.Web.Core: [runtime, rtl]
+  - Dext.Web.Hubs: [runtime, rtl]
+  - Dext.EF.Components: [runtime, rtl]
+  - Dext.AI: [runtime, rtl1]
+  - Dext.Hosting: [runtime, rtl]
+  - Dext.EF.Design: [design, vcl]
+  - Dext.Testing: [runtime, vcl1]
+  - Dext.Testing.Design: [design, vcl]
+
+# The settings in the this section are only needed if the packages don't follow smartsetup conventions.
+package options:
+  package folders:
+    delphisydney+: Sources
+
+  add libsuffix: true
