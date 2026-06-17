@@ -30,7 +30,7 @@ packages:
 # The settings in the this section are only needed if the packages don't follow smartsetup conventions.
 package options:
   package folders:
-    delphisydney+: Bar_QRCodes4D
+    delphisydney+: src
   
   add libsuffix: true
   ignore dproj platforms: true
