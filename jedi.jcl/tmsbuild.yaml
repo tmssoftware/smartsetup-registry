@@ -1,7 +1,7 @@
 # TMS Smart Setup definition file for JEDI JCL
 # yaml-language-server: $schema=https://raw.githubusercontent.com/tmssoftware/smartsetup/refs/heads/main/tms/example-config/tmsbuild.schema.json
 
-minimum required tmsbuild version: 3.5
+minimum required tmsbuild version: 3.0 #it is 3.5, but it makes everyone crash right now... we need to fix this. 
   
 application:
   id: jedi.jcl # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
