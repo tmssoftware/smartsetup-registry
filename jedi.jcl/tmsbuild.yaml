@@ -25,10 +25,18 @@ supported frameworks:
 
 packages:
   - Jcl: [runtime, vcl]
-  - JclContainers: [runtime, vcl]            
-  - JclDeveloperTools: [runtime, vcl]
   - JclVcl: [runtime, vcl]
-  
+  - JclContainers: [runtime, vcl]
+  - JclDeveloperTools: [runtime, vcl]
+  - JclBaseExpert: [design, vcl]
+  - JclDebugExpert: [design, vcl]
+  - JclFavoriteFoldersExpert: [design, vcl]
+  - JclProjectAnalysisExpert: [design, vcl]
+  - JclRepositoryExpert: [design, vcl]
+  - JclSIMDViewExpert: [design, vcl]
+  - JclStackTraceViewerExpert: [design, vcl]
+  - JclVersionControlExpert: [design, vcl]
+
 
 # The settings in the this section are only needed if the packages don't follow smartsetup conventions
 package options:
