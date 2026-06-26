@@ -1,0 +1,80 @@
+# TMS Smart Setup definition file for JEDI JCL
+# yaml-language-server: $schema=https://raw.githubusercontent.com/tmssoftware/smartsetup/refs/heads/main/tms/example-config/tmsbuild.schema.json
+
+minimum required tmsbuild version: 3.5
+  
+application:
+  id: jedi.jcl # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
+  name: JEDI JCL
+  description: JEDI Code Library
+
+  url: https://github.com/project-jedi/jcl
+  docs: 
+ # version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
+                             # and the line must be "something: version". like for example "tms.example: 1.0.3". 
+                             # The text after ":" will be used as version number to display along the name.
+
+supported frameworks:
+  vcl:
+    ide since: delphixe2
+    platforms:
+      - win32intel
+      - win64intel
+      - win64xintel
+    c++ builder support: true
+
+packages:
+  - Jcl: [runtime, vcl]
+  - JclContainers: [runtime, vcl]            
+  - JclDeveloperTools: [runtime, vcl]
+  - JclVcl: [runtime, vcl]
+  
+
+# The settings in the this section are only needed if the packages don't follow smartsetup conventions
+package options:
+  # By default, smartsetup double-checks that the dproj it is going to compile supports the platforms you specified above in the "packages" section.
+  # But some packages might have wrong data in the dproj. If you set this to true, smartsetup will ignore whatever the dproj says and only use the info in "packages" 
+  ignore dproj platforms: false
+
+  # This shouldn't be needed in general. Smartsetup will find your packages wherever they are.
+  # But sometimes you might have the same packages in different unrelated folders (maybe some backup) and SmartSetup will get confused
+  # about which ones it has to use. In this case, you can specify the relative path here where SmartSetup will start looking for packages.
+  root package folder:
+
+  # Use this section only if you are not using the standard smartsetup folders for the packages.
+  # Note that if the same folder supports for example Delphi 11 and Delphi 12 (by using Libsuffix $(auto)), you can 
+  # write the same folder for 11 and 12.
+  # You can also use a + at the end of the IDE Name to specify that this applies to that Delphi version and all newer ones.
+  # When using + order is important. In the example above, the line with delphisydney+ affects all versions until delphi12 (sydney and 11).
+  # The line delphi12+, being below delphisydney+ affects all delphi versions after 12, overriding the line delpihsydney+.
+  # If you don't specify a name for a given version,  the standard packages will be assumed for that version.
+  package folders:
+    delphi7: D7
+    delphi2005: D9
+    delphi2006: D10
+    delphi2007: D11
+    delphi2009: D12
+    delphi2010: D14
+    delphixe: D15
+    delphixe2: D16
+    delphixe3: D17
+    delphixe4: D18
+    delphixe5: D19
+    delphixe6: D20
+    delphixe7: D21
+    delphixe8: D22
+    delphiseattle: D23
+    delphiberlin: D24
+    delphitokyo: D25
+    delphirio: D26
+    delphisydney: D27
+    delphi11: D28
+    delphi12: D29
+    delphi13: D37
+
+paths:
+  # this is similar to "extra library paths" above (and all the comments also apply here), but this path will only be added when compiling
+  # with msbuild. "extra library paths" will be added when compiling with msbuild, but also registered in Rad Studio. Entries here won't be registered.
+  # normally you will use this entries to fix buggy packages that you can't modify. It shouldn't be needed in normal cases and correct packages.
+  build-only library paths:
+
