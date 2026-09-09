@@ -1,3 +1,10 @@
+# #### IMPORTANT ##### #
+# Zeos builds and installs in SmartSetup, but it will fail with an error, because the zeos packages are wrong: 
+# See https://sourceforge.net/p/zeoslib/tickets/633/
+# If after trying to install, you modify the 2 packages as mentioned in the issue, it will install cleanly.
+# #################### #
+
+
 # TMS Smart Setup definition file for ZeosLib
 # Do not modify this file. To configure smart setup, edit tms.config.yaml instead.
 minimum required tmsbuild version: 2.0
