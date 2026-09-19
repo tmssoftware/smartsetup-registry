@@ -110,8 +110,9 @@ paths:
   # by passing "Resources\something" as library path, the path will resolve to "Resources\something\..\..\Resources\Spring.Data.ObjectDataSet.dcr" which is the correct path.
   # once the issue is fixed this section can be removed.
   build-only library paths:
-    - Resources\invalid_folder\
+# delphi 13.2 will ignore non-existing paths. So the invalid_folder trick below won't work. We will use a different set of existing 2 folders instead.
+#    - Resources\invalid_folder
+    - Marshmallow\Data
   
-
  
 
