@@ -1,0 +1,72 @@
+# =====================================================================================================
+# TMS Smart Setup configuration file for product Delphi JOSE and JWT
+# See https://doc.tmssoftware.com/smartsetup/guide/creating-bundles.html#creating-a-tmsbuildyaml-file
+# =====================================================================================================
+# yaml-language-server: $schema=https://raw.githubusercontent.com/tmssoftware/smartsetup/refs/heads/main/tms/example-config/tmsbuild.schema.json
+
+minimum required tmsbuild version: 3.5
+
+# General information about the product.
+application:
+  id: rossi.delphi-jose-jwt
+  name: Delphi JOSE and JWT
+  description: Delphi implementation of JOSE (JSON Object Signing and Encryption) and JWT (JSON Web Token)
+  url: https://github.com/paolo-rossi/delphi-jose-jwt
+
+# Frameworks are just a group of supported IDEs and platforms. You can define as much as you want with any name you desire, and then combine them to specify what platforms and IDEs the packages support.
+supported frameworks:
+  rtl:
+    ide since: delphiberlin
+    ide until: delphiberlin
+    platforms:
+      - win32intel
+  rtl1:
+    ide since: delphitokyo
+    ide until: delphirio
+    platforms:
+      - win32intel
+      - win64intel
+      - linux64
+    c++ builder support: true
+  rtl2:
+    ide since: delphisydney
+    platforms:
+      - win32intel
+      - win64intel
+      - win64xintel
+    c++ builder support: true
+
+  taurus:
+    ide since: delphi11
+    platforms:
+      - win32intel
+      - win64intel
+      - win64xintel
+    dependencies:
+      - taurustls_developers.taurustls: TaurusTLS
+
+  crypto4pascal:
+    ide since: delphi11
+    platforms:
+      - win32intel
+      - win64intel
+      - win64xintel
+    dependencies:
+      - xor-el.crypto-lib-4-pascal: CryptoLib4Pascal
+
+
+# List of packages in the library. Each package must have a unique name, and must be listed only once.
+packages:
+  - JOSE: [runtime,rtl,rtl1,rtl2]
+  - JOSE_TaurusTLSProvider: [runtime,taurus]
+  - JOSE_CryptoLib4PascalProvider: [runtime,crypto4pascal]
+
+# The settings in the this section are only needed if the packages don't follow smartsetup conventions.
+package options:
+  package folders:
+    delphiberlin: 10.1Berlin
+    delphitokyo: 10.2Tokyo
+    delphirio: 10.3Rio
+    delphisydney: 10.4Sydney
+    delphi11+: 11AndLater
+
