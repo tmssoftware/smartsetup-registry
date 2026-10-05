@@ -1,0 +1,69 @@
+# TMS Smart Setup definition file for MARS-Curiosity
+# See https://doc.tmssoftware.com/smartsetup/guide/creating-bundles.html
+# yaml-language-server: $schema=https://raw.githubusercontent.com/tmssoftware/smartsetup/refs/heads/main/tms/example-config/tmsbuild.schema.json
+
+minimum required tmsbuild version: 2.1
+
+application:
+  id: andreamagni.mars
+  name: MARS-Curiosity
+  description: Delphi REST library. Build REST servers and clients, with JWT authentication, FireDAC dataset publishing, server-sent events, WebStencils and MCP (Model Context Protocol) support.
+  company name: Andrea Magni
+  copyright: Andrea Magni
+  license: MPL-2.0
+  license url: https://github.com/andrea-magni/MARS/blob/master/LICENSE
+  url: https://github.com/andrea-magni/MARS
+  docs: https://andrea-magni.github.io/MARS/
+  version file: version.txt
+
+# delphi-jose-jwt (ThirdParty/delphi-jose-jwt) is a git submodule for manual installs; with Smart
+# Setup it comes from its own product, rossi.delphi-jose-jwt, so the submodule is not fetched.
+fetch options:
+  skip submodules: true
+
+supported frameworks:
+  rtl:
+    ide since: delphisydney
+    platforms:
+      - win32intel
+      - win64intel
+
+  # weak dependency: MARS.JOSE (JOSE JWT backend) is built only when rossi.delphi-jose-jwt is installed;
+  # the mORMot JWT backend (MARS.mORMot) needs nothing else
+  jose:
+    ide since: delphisydney
+    platforms:
+      - win32intel
+      - win64intel
+    dependencies:
+      - rossi.delphi-jose-jwt
+
+packages:
+  - MARS.Utils: [runtime, rtl]
+  - MARS.Core: [runtime, rtl]
+  - MARS.ReadersAndWriters: [runtime, rtl]
+  - MARS.JOSE: [runtime, jose]
+  - MARS.mORMot: [runtime, rtl]
+  - MARS.DCS: [runtime, rtl]
+  - MARS.FireDAC: [runtime, rtl]
+  - MARSClient.Core: [runtime, rtl]
+  - MARSClient.FireDAC: [runtime, rtl]
+  - MARSClient.CoreDesign: [design, rtl]
+  - MARSClient.FireDACDesign: [design, rtl]
+  # MARS.UniDAC is not listed: it requires Devart UniDAC, which is not available through SmartSetup.
+
+package options:
+  package folders:
+    delphisydney: 104Sydney
+    delphi11: 11Alexandria
+    delphi12: 12Athens
+    delphi13: 13Florence
+
+paths:
+  # Many MARS units (MCP, OpenAPI, WebStencils, Indy/DCS http servers, ...) are not part of the packages
+  # and are compiled directly into the user's projects, so the sources must be reachable from the library path.
+  extra library paths:
+    - Source
+    - ThirdParty/mORMot/Source
+    - ThirdParty/Neslib.Yaml
+    - ThirdParty/Neslib.Yaml/Neslib
