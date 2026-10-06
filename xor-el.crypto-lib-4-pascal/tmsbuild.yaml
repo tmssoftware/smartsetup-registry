@@ -1,0 +1,56 @@
+# =====================================================================================================
+# TMS Smart Setup configuration file for product CryptoLib4Pascal
+# See https://doc.tmssoftware.com/smartsetup/guide/creating-bundles.html#creating-a-tmsbuildyaml-file
+# =====================================================================================================
+# yaml-language-server: $schema=https://raw.githubusercontent.com/tmssoftware/smartsetup/refs/heads/main/tms/example-config/tmsbuild.schema.json
+
+minimum required tmsbuild version: 3.5
+
+# General information about the product.
+application:
+  id: xor-el.crypto-lib-4-pascal
+  name: CryptoLib4Pascal
+  description: Crypto for Modern Object Pascal
+  url: https://github.com/Xor-el/CryptoLib4Pascal.git
+
+# Frameworks are just a group of supported IDEs and platforms. You can define as much as you want with any name you desire, and then combine them to specify what platforms and IDEs the packages support.
+supported frameworks:
+  rtl:
+    ide since: delphi11
+    platforms:
+      - win32intel
+      - win64intel
+      - win64xintel
+      - macos64intel
+      - macos64arm
+      - iosdevice64
+      - android32
+      - android64
+      - iossimulator64arm
+      - winarm64ec
+
+packages:
+  - CryptoLib4PascalPackage: [rtl]
+
+package definitions:
+  CryptoLib4PascalPackage:
+    #generate from causes smartsetup 3.5 or older to crash. When enough time has passed, go back to using it.
+    #generate from: CryptoLib\src\Packages\Delphi\CryptoLib4PascalPackage.dpk
+    framework type: NONE # can be NONE, FMX or VCL
+    description: Crypto for Modern Object Pascal
+
+    ##remove this once we can use generate from
+    files:
+       - source:
+           folder: CryptoLib\src
+           include file mask: '*.pas'
+           exclude folder mask: 'Packages'
+           recursive: true
+    requires: rtl,HashLib4PascalPackage,SimpleBaseLib4PascalPackage
+    ## end of section to remove
+
+dependencies:
+  - xor-el.simple-base-lib-4-pascal: SimpleBaseLib4Pascal
+  - xor-el.hash-lib-4-pascal: HashLib4Pascal
+
+
