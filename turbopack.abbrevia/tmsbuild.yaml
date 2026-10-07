@@ -1,5 +1,7 @@
 # TMS Smart Setup definition file for Abbrevia
 # Do not modify this file. To configure smart setup, edit tms.config.yaml instead.
+# yaml-language-server: $schema=https://raw.githubusercontent.com/tmssoftware/smartsetup/refs/heads/main/tms/example-config/tmsbuild.schema.json
+
 minimum required tmsbuild version: 2.0
   
 application:
@@ -8,7 +10,7 @@ application:
   description: Abbrevia is a compression toolkit for Delphi and C++Builder.
   copyright: MPL License
   url: https://github.com/TurboPack/Abbrevia
-  docs: 
+ 
 #  version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
                              # and the line must be "something: version". like for example "tms.example: 1.0.3". 
                              # The text after ":" will be used as version number to display along the name.
@@ -27,6 +29,7 @@ supported frameworks:
     platforms:
       - win32intel
       - win64intel
+      - winarm64ec
       - macos32intel
       - macos64intel    
       - macos64arm
@@ -56,4 +59,8 @@ package options:
     delphisydney: Sydney\Delphi
     
     delphi11+: 11AndAbove\Delphi
+
+paths:
+  build-only library paths:
+    - Source #needed to compile winarm64ec
 
