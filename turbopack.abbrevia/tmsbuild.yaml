@@ -23,13 +23,13 @@ supported frameworks:
       - win32intel
       - win64intel
       - win64xintel
+      - winarm64ec
     c++ builder support: true
   fmx:
     ide since: delphiberlin
     platforms:
       - win32intel
       - win64intel
-      - winarm64ec
       - macos32intel
       - macos64intel    
       - macos64arm
@@ -61,6 +61,6 @@ package options:
     delphi11+: 11AndAbove\Delphi
 
 paths:
-  build-only library paths:
-    - Source #needed to compile winarm64ec
+  extra library paths:
+    - '@winarm64ec: Source' #needed to compile winarm64ec
 
