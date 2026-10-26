@@ -6,6 +6,7 @@ application:
   id: delphiworlds.kastri # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
   name: Kastri
   url: https://github.com/DelphiWorlds/Kastri
+  description: A cross-platform library which builds upon the existing RTL, FMX and VCL libraries in Delphi. Supports a number of newer APIs that you won't find in FMX/RTL, and "backfills" for missing APIs
   docs: 
 #  version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
                              # and the line must be "something: version". like for example "tms.example: 1.0.3". 

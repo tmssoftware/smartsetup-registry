@@ -5,6 +5,7 @@ minimum required tmsbuild version: 2.0
 application:
   id: castle.engine # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
   name: Castle Engine
+  description: Cross-platform (desktop, mobile, console, web) 3D and 2D game engine. Powerful visual editor. Support for glTF, X3D, IFC and more. Fast clean code using modern Pascal. Free and open-source.
   url: https://github.com/castle-engine/castle-engine
   docs: 
 #  version file: version.txt  # if this line is present, then version.txt must exist, it must have at least one line, 
@@ -35,10 +36,10 @@ supported frameworks:
 
     c++ builder support: true
 
- lazarus:
-   ide since: lazarus
-   ide until: lazarus
-   platforms:
+  lazarus:
+    ide since: lazarus
+    ide until: lazarus
+    platforms:
      - win32intel #for lazarus it doesn't matter. It will use whatever it is configured to compile.
 
 

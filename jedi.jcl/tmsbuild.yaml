@@ -6,7 +6,7 @@ minimum required tmsbuild version: 3.0 #it is 3.5, but it makes everyone crash r
 application:
   id: jedi.jcl # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
   name: JEDI JCL
-  description: JEDI Code Library
+  description: The JEDI Code Library (JCL) consists of a set of thoroughly tested and fully documented utility functions and non-visual classes which can be instantly reused in your Delphi and C++ Builder projects.
 
   url: https://github.com/project-jedi/jcl
   docs: 

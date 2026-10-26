@@ -10,6 +10,7 @@ minimum required tmsbuild version: 3.4
 application:
   id: tms.barcode
   name: Bar & QRCodes4D
+  description: QR code & barcode generator components for Delphi. Can export QR code & bar code to SVG and PNG image files.
   url: https://github.com/tmssoftware/Bar_QRCodes4D
 
 # Frameworks are just a group of supported IDEs and platforms. You can define as much as you want with any name you desire, and then combine them to specify what platforms and IDEs the packages support.

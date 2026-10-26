@@ -7,7 +7,7 @@ minimum required tmsbuild version: 2.0
 application:
   id: turbopack.abbrevia # use a short descriptive name in the form company.product. This id will be used everywhere by tms smart setup to refer to this product.
   name: Abbrevia
-  description: Abbrevia is a compression toolkit for Delphi and C++Builder.
+  description: Abbrevia is a compression toolkit for Delphi and C++Builder. It supports compressing and decompressing PKZIP, Microsoft CAB, tar, gzip, and bzip2 archives, and can create self-extracting executables. On Windows it also provides Delphi wrappers for the LZMA, Bzip2, and WavPack SDKs, and PPMd decompression.
   copyright: MPL License
   url: https://github.com/TurboPack/Abbrevia
  
