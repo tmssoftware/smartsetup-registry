@@ -1,0 +1,45 @@
+#####################################
+# TMS Smart Setup definition file for C4D MaskEdit.
+# Do not modify this file. To configure smart setup, edit tms.config.yaml instead.
+# See https://doc.tmssoftware.com/smartsetup/guide/creating-bundles.html#creating-a-tmsbuildyaml-file
+#####################################
+# yaml-language-server: $schema=https://raw.githubusercontent.com/tmssoftware/smartsetup/refs/heads/main/tms/example-config/tmsbuild.schema.json
+
+minimum required tmsbuild version: 2.0
+
+application:
+  id: c4d.maskedit
+  name: C4D MaskEdit
+  description: A visual component for Delphi VCL that allows the entry and formatting of numeric values, with control over decimal places, rounding, and validation of minimum and maximum values.
+  company name: Code4Delphi
+  url: https://github.com/Code4Delphi/c4d-maskedit
+  vcs protocol: git
+
+# valid ide values:
+#   delphi6/delphi7/delphi2005/delphi2006/delphi2007/delphi2009/delphi2010/delphixe/delphixe2..delphixe8
+#   delphiseattle/delphiberlin/delphitokyo/delphirio/delphisydney/delphi11..delphi12
+#   lazarus
+
+# platforms you can write below:
+#  win32intel/win64intel/win64xintel/winarm64ec/macos32intel/macos64intel/macos64arm/iossimulator/iosdevice32/iosdevice64/android32/android64/linux64
+
+# Frameworks are just a group of supported IDEs and platforms. You can define as much as you want
+# with any name you desire, and then combine them to specify what platforms and IDEs the packages support.
+supported frameworks:
+  vcl:
+    ide since: delphirio # {$LIBSUFFIX AUTO} only works reliably from Delphi 11 on
+    platforms:
+      - win32intel
+      - win64intel
+    c++ builder support: false
+
+# The package is in packages\d11+\C4DMaskEdit.dproj (standard SmartSetup naming),
+# so no "package options" section is needed.
+# It is a single package with both runtime and design-time (Register) code.
+packages:
+  - C4DMaskEdit: [runtime, design, vcl]
+
+# The settings in the this section are only needed if the packages don't follow smartsetup conventions
+package options:
+  package folders:
+    delphirio+: c4d-maskedit # Identify the packages folder for this version.
