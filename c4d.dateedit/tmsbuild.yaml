@@ -1,0 +1,48 @@
+#####################################
+# TMS Smart Setup definition file.
+# Do not modify this file. To configure smart setup, edit tms.config.yaml instead.
+# See https://doc.tmssoftware.com/smartsetup/guide/creating-bundles.html#creating-a-tmsbuildyaml-file
+#####################################
+# yaml-language-server: $schema=https://raw.githubusercontent.com/tmssoftware/smartsetup/refs/heads/main/tms/example-config/tmsbuild.schema.json
+
+minimum required tmsbuild version: 2.0
+
+application:
+  id: c4d.dateedit
+  name: C4D DateEdit
+  description: A visual component for Delphi VCL.
+  company name: Code4Delphi
+  url: https://github.com/Code4Delphi/c4d-dateedit
+  vcs protocol: git
+
+# valid ide values:
+#   delphi6/delphi7/delphi2005/delphi2006/delphi2007/delphi2009/delphi2010/delphixe/delphixe2..delphixe8
+#   delphiseattle/delphiberlin/delphitokyo/delphirio/delphisydney/delphi11..delphi12
+#   lazarus
+
+# platforms you can write below:
+#  win32intel/win64intel/win64xintel/winarm64ec/macos32intel/macos64intel/macos64arm/iossimulator/iosdevice32/iosdevice64/android32/android64/linux64
+
+# Frameworks are just a group of supported IDEs and platforms. You can define as much as you want
+# with any name you desire, and then combine them to specify what platforms and IDEs the packages support.
+supported frameworks:
+  vcl:
+    ide since: delphi11 # {$LIBSUFFIX AUTO} only works reliably from Delphi 11 on
+    platforms:
+      - win32intel
+      - win64intel
+    c++ builder support: false
+
+# The package is in packages\C4DDateEdit.dproj (not in the standard packages\d11+ folder),
+# so the "package options" section below tells SmartSetup where to find it.
+# It is a single package with both runtime and design-time (Register) code.
+packages:
+  - C4DDateEdit: [runtime, design, vcl]
+
+# The settings in the this section are only needed if the packages don't follow smartsetup conventions
+package options:
+  # Use this section only if you are not using the standard smartsetup folders for the packages.
+  # Note that if the same folder supports for example Delphi 11 and Delphi 12 (by using Lbsuffix $(auto)), you can 
+  # write the same folder for 11 and 12.
+  package folders: 
+    delphi11+: Packages
